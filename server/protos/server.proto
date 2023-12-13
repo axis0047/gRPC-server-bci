@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+package streamServer;
+
+// The greeting service definition.
+service Streamer {
+	// Unary
+	rpc SayHello (HelloRequest) returns (HelloReply);
+
+	// Server Streaming
+	rpc ParrotSaysHello (HelloRequest) returns (stream HelloReply);
+
+    // Server Streaming signal
+    rpc SignalStream (SignalRequest) returns (stream SignalReply);
+
+}
+
+// The request message containing the user's name.
+message HelloRequest {
+  string name = 1;
+  string greeting = 2;
+}
+
+// The response message containing the greetings.
+message HelloReply {
+  string message = 1;
+}
+
+message SignalRequest {
+    string name = 1;
+}
+
+message SignalReply {
+    int32 signal = 1;
+}
